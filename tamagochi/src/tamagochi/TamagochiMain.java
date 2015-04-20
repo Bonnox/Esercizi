@@ -23,6 +23,7 @@ public class TamagochiMain
 			System.out.print ("ora il tamagochi " + tama1.come_sta_stringa());
 			System.out.println ("   ---   " + tama1.come_sta_stringa_debug());
 		}
+		//asdf
 		
 	
 	}
