@@ -64,18 +64,23 @@ public class Tamagochi
 	
 	private void dai_da_mangiare (int quantita)
 	{	
+		if (get_stato()>0)
+		{
 		affetto=affetto-(quantita*DIMINUZIONE_AFFETTO);
 		
 		if (affetto<=100)
 				{
 					sazieta=sazieta+(quantita*AUMENTO_SAZIETA);
 				}
+		}
 	}
 	
 	// interfacce
 	
 	private void accarezza (int quantita)
 	{
+		if (get_stato()>0)
+		{
 		sazieta=sazieta-(quantita*DIMINUZIONE_SAZIETA);
 		
 		if (sazieta<=100)
@@ -83,7 +88,7 @@ public class Tamagochi
 					
 					affetto=affetto+(quantita*AUMENTO_AFFETTO);
 				}
-		
+		}
 	}
 	
 	public int get_stato() // invisibile all'utente
