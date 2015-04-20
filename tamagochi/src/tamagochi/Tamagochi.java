@@ -26,6 +26,7 @@ public class Tamagochi
 	private double sazieta;
 	private double affetto;
 	private int stato; // 0 morto - 1 infelice - 2 felice
+	private int specifica_stato_infelice;
 	
 	// costruttori
 	
@@ -35,8 +36,9 @@ public class Tamagochi
 		Random randomGenerator = new Random();
 		
 		nome=_nome;
-		sazieta=randomGenerator.nextInt(100);
-		affetto=randomGenerator.nextInt(100);
+		sazieta=randomGenerator.nextInt(98)+1; // controllo mortalità infantile
+		affetto=randomGenerator.nextInt(98)+1;
+		
 	}
 		
 	public Tamagochi (String _nome, int _sazieta, int _carezza) // costruttore per il debug
@@ -86,7 +88,7 @@ public class Tamagochi
 	
 	public int get_stato() // invisibile all'utente
 	{
-		if ((get_sazieta()<=SAZIETA_MIN) || (get_affetto()<=AFFETTO_MIN) || (get_sazieta()>SAZIETA_MAX))
+		if ((get_sazieta()<=SAZIETA_MIN) || (get_affetto()<=AFFETTO_MIN) || (get_sazieta()>=SAZIETA_MAX))
 		{
 			stato=0; //morto
 			return stato;
@@ -100,8 +102,30 @@ public class Tamagochi
 			
 				{
 					stato=1; //infelice
+					
+					if ((affetto<AFFETTO_INFELICE) && (sazieta<SAZIETA_INFELICE_MIN))
+					{
+						specifica_stato_infelice=1;
+					}
+					if ((affetto<AFFETTO_INFELICE) && (sazieta>SAZIETA_INFELICE_MAX))
+					{
+						specifica_stato_infelice=2;
+					}
+					if (sazieta<SAZIETA_INFELICE_MIN)
+					{
+						specifica_stato_infelice=3;
+					}
+					if (affetto<AFFETTO_INFELICE)
+					{
+						specifica_stato_infelice=4;
+					}
+					if (sazieta>SAZIETA_INFELICE_MAX)
+					{
+						specifica_stato_infelice=5;
+					}	
 					return stato;
 				}
+				
 		
 				else
 			
@@ -169,23 +193,23 @@ public class Tamagochi
 			if (stato==1) //casistiche dello star male
 			{
 				ritorno = nome + " sta male: ";
-				if ((affetto<AFFETTO_INFELICE) && (sazieta<SAZIETA_INFELICE_MIN))
+				if (specifica_stato_infelice==1)
 				{
 					ritorno += "è depresso ed ha fame";
 				}
-				if ((affetto<AFFETTO_INFELICE) && (sazieta>SAZIETA_INFELICE_MAX))
+				if (specifica_stato_infelice==2)
 				{
 					ritorno += "è depresso ed ha mangiato troppo";
 				}
-				if (sazieta<SAZIETA_INFELICE_MIN)
+				if (specifica_stato_infelice==3)
 				{
 					ritorno += "ha fame";
 				}
-				if (affetto<AFFETTO_INFELICE)
+				if (specifica_stato_infelice==4)
 				{
 					ritorno += "è depresso";
 				}
-				if (sazieta>SAZIETA_INFELICE_MAX)
+				if (specifica_stato_infelice==5)
 				{
 					ritorno += "ha mangiato troppo";
 				}	
