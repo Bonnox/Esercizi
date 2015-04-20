@@ -3,16 +3,15 @@ package tamagochi;
 import java.util.Random;
 
 
-
 public class Tamagochi
 {
 	
 	// costanti
 	
-	private final float AUMENTO_AFFETTO=0.5f;
-	private final float AUMENTO_SAZIETA=0.1f;
-	private final float DIMINUZIONE_AFFETTO=0.25f;
-	private final float DIMINUZIONE_SAZIETA=0.5f;
+	private final double AUMENTO_AFFETTO=0.5;
+	private final double AUMENTO_SAZIETA=0.1;
+	private final double DIMINUZIONE_AFFETTO=0.25;
+	private final double DIMINUZIONE_SAZIETA=0.5;
 	private final int SAZIETA_INFELICE_MIN=30;
 	private final int SAZIETA_INFELICE_MAX=90;
 	private final int AFFETTO_INFELICE=30;
@@ -24,9 +23,9 @@ public class Tamagochi
 	// variabili
 	
 	private String nome;
-	private float sazieta;
-	private float affetto;
-	private int stato; // 0 morto 1 infelice 2 felice
+	private double sazieta;
+	private double affetto;
+	private int stato; // 0 morto - 1 infelice - 2 felice
 	
 	// costruttori
 	
@@ -39,57 +38,55 @@ public class Tamagochi
 		sazieta=randomGenerator.nextInt(100);
 		affetto=randomGenerator.nextInt(100);
 	}
-	
-	
-	public Tamagochi (int _sazieta, int _carezza) // metodo per il debug
+		
+	public Tamagochi (String _nome, int _sazieta, int _carezza) // costruttore per il debug
 	{
+		nome=_nome;
 		sazieta=_sazieta;
 		affetto=_carezza;
 	}
 	
-	// metodi obsoleti
-	
-	/*private float get_sazieta ()
-	{
-		return sazieta;
-	};
-	*/
-	
-	/*private float get_carezza ()
-	{
-		return carezza;
-	}
-	*/
-	
 	// metodi interni
 	
-	private void dai_da_mangiare (int quantita)
+	private double get_sazieta()
 	{
-		
-		sazieta=sazieta+(quantita*AUMENTO_SAZIETA);
-		
-		if (affetto>=100)
-				{
-					affetto=affetto-(quantita*DIMINUZIONE_AFFETTO);
-				}
+		if (sazieta<SAZIETA_MIN) {sazieta=SAZIETA_MIN;}
+		return sazieta;
+	}
+
+	private double get_affetto()
+	{
+		if (affetto>AFFETTO_MAX) {affetto=AFFETTO_MAX;}
+		return affetto;
 	}
 	
-	private void accarezza (int quantita)
-	{
-		affetto=affetto+(quantita*AUMENTO_AFFETTO);
+	private void dai_da_mangiare (int quantita)
+	{	
+		affetto=affetto-(quantita*DIMINUZIONE_AFFETTO);
 		
-		if (sazieta<=100)
+		if (affetto<=100)
 				{
-					sazieta=sazieta-(quantita*DIMINUZIONE_SAZIETA);
+					sazieta=sazieta+(quantita*AUMENTO_SAZIETA);
 				}
-		
 	}
 	
 	// interfacce
 	
+	private void accarezza (int quantita)
+	{
+		sazieta=sazieta-(quantita*DIMINUZIONE_SAZIETA);
+		
+		if (sazieta<=100)
+				{
+					
+					affetto=affetto+(quantita*AUMENTO_AFFETTO);
+				}
+		
+	}
+	
 	public int get_stato() // invisibile all'utente
 	{
-		if ((sazieta<=SAZIETA_MIN) || (affetto<=AFFETTO_MIN) || (sazieta>=SAZIETA_MAX))
+		if ((get_sazieta()<=SAZIETA_MIN) || (get_affetto()<=AFFETTO_MIN) || (get_sazieta()>SAZIETA_MAX))
 		{
 			stato=0; //morto
 			return stato;
@@ -133,21 +130,26 @@ public class Tamagochi
 	
 	public String come_sta_stringa_debug()
 	{
-		get_stato();
+		//get_stato();
+		String ritorno;
 		
-		if (stato==0)
+		
+		if (get_stato()==0)
 		{ 
-			return (nome + " è morto - sazietà " + sazieta + " affetto " + affetto);
+			ritorno = (nome + " è morto - sazietà " + sazieta + " affetto " + affetto);
+			return ritorno;
 		}
 		else
 		{
-			if (stato==1)
+			if (get_stato()==1)
 			{
-				return (nome + " sta male - sazietà " + sazieta + " affetto " + affetto);
+				ritorno = (nome + " sta male - sazietà " + sazieta + " affetto " + affetto);
+				return ritorno;
 			}
 			else
 			{
-				return nome + " sta bene - sazietà " + sazieta + " " + affetto;
+				ritorno = nome + " sta bene - sazietà " + sazieta + " " + affetto;
+				return ritorno;
 			}
 		}
 	}
