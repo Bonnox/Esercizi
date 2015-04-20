@@ -36,16 +36,16 @@ public class Tamagochi
 		Random randomGenerator = new Random();
 		
 		nome=_nome;
-		sazieta=randomGenerator.nextInt(98)+1; // controllo mortalità infantile
+		sazieta=randomGenerator.nextInt(98)+1; // controllo mortalità infantile :D
 		affetto=randomGenerator.nextInt(98)+1;
 		
 	}
 		
-	public Tamagochi (String _nome, int _sazieta, int _carezza) // costruttore per il debug
+	public Tamagochi (String _nome, int _sazieta, int _affetto) // costruttore per il debug
 	{
 		nome=_nome;
 		sazieta=_sazieta;
-		affetto=_carezza;
+		affetto=_affetto;
 	}
 	
 	// metodi interni
@@ -53,11 +53,13 @@ public class Tamagochi
 	private double get_sazieta()
 	{
 		if (sazieta<SAZIETA_MIN) {sazieta=SAZIETA_MIN;}
+		if (sazieta>SAZIETA_MAX) {sazieta=SAZIETA_MAX;}
 		return sazieta;
 	}
 
 	private double get_affetto()
 	{
+		if (affetto<AFFETTO_MIN) {affetto=AFFETTO_MIN;}
 		if (affetto>AFFETTO_MAX) {affetto=AFFETTO_MAX;}
 		return affetto;
 	}
