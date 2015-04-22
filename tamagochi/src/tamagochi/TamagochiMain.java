@@ -92,7 +92,7 @@ public class TamagochiMain
 		while ((comando!='E') || (comando!='e'));
 		
 		System.out.println("tutti morti");
-		
+		// ciaooo
 	}
 	
 
