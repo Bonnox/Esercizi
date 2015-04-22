@@ -2,71 +2,77 @@ package tamagochi;
 
 public class TamagochiMain
 {		
-	public static void main (String[] args)
 	
+	static char comando;			// comando dell'utente
+	static int azione;				// cosa fare al tamagochi
+	static int quantita_tamagochi;	// quanti tamagochi usare
+	static int quantita_azioni;		// quante cose fare al tamagochi
+	static Tamagochi vettore [];	// lo zoo
+	static int i;					// contatore
+	static String nome;				// il nome del tamagochi
+	static int contavivi;			// non farli morire!
+	
+	private static void inizio_gioco()
 	{
-		
-		// INIZIALIZZAZIONE
-		
-		char comando;			// comando dell'utente
-		int azione;				// cosa fare al tamagochi
-		int quantita_tamagochi;		// quanti tamagochi usare
-		int quantita_azioni;		//quante cose fare al tamagochi
-		Tamagochi vettore [];	// lo zoo
-		int i;					//contatore
-		String nome;			// il nome del tamagochi
-		
-		
-		// SALUTO
-		
 		System.out.println("Gioco del tamagochi\n\n");
 		System.out.println("quanti tamagochi si vogliono creare?");
 		
-		// ricevi quantita
-		quantita_tamagochi=3;
-		
-		
-		// CREAZIONE DEI TAMAGOCHI
-		
+		quantita_tamagochi=MyUtil.Leggi_int();
+	}
+	
+	private static void Creazione_tamagochi()
+	{
 		vettore = new Tamagochi [quantita_tamagochi];
 		
 		for (i=0; i<quantita_tamagochi; i++)
 		
 		{
-			System.out.print("inserire il nome del " + i + "^ tamagochi: ");
-			//ricevi nome
-			nome = "pino";
+			System.out.print("inserire il nome del " + (i+1) + "^ tamagochi: ");
+			nome = MyUtil.Leggi_stringa();
 			vettore [i] = new Tamagochi (nome);
 		}
+	}
+	
+	public static void main (String[] args)
+	
+	{
+
+		inizio_gioco();
+
+		Creazione_tamagochi();
 		
 		
 		// INIZIO GIOCO
 		
-		do
+		while ((comando!='E') || (comando!='e'))
 		{
-			System.out.println("E - Esci\n M - Dai da mangiare\n A - Accarezza\n\n");
-			// ricevi comando
-			comando='a';
-			
-			if ((comando=='Q') || (comando=='q'))
+			do
 			{
-				
+				System.out.println(" E - Esci\n M - Dai da mangiare\n A - Accarezza\n\n");
+				comando=MyUtil.Leggi_char();
+			
+				if ((comando=='M') || (comando=='m'))
+				{
+					azione=0;
+				}
+				else
+				{
+					if ((comando=='A') || (comando=='a'))
+					{
+						azione=1;
+					}
+					else
+					{
+						azione=2;
+					}
+				}
 			}
+			while ((azione>1));
+		
+
+			System.out.println("Quante volte? ");
+			quantita_azioni=MyUtil.Leggi_int();
 			
-			if ((comando=='M') || (comando=='m'))
-			{
-				azione=0;
-			}
-			
-			if ((comando=='A') || (comando=='a'))
-			{
-				azione=1;
-			}
-			
-			
-			
-			azione=0;
-			quantita_azioni=5;
 			
 			for (i=0; i<quantita_tamagochi; i++)
 			{
@@ -78,21 +84,15 @@ public class TamagochiMain
 			
 			for (i=0; i<quantita_tamagochi; i++)
 			{
-				System.out.print ("ora il tamagochi " + i + " " + vettore[i].come_sta_stringa() );
-				System.out.print ("ora il tamagochi " + vettore[i].come_sta_stringa_debug() );
+				System.out.println ("ora il tamagochi " + i + " " + vettore[i].come_sta_stringa() );
+				System.out.print (" ----- " + vettore[i].come_sta_stringa_debug() );
 			}
 			
-			
-			for (i=0; i<quantita_tamagochi; i++)
-			{
-				// metti l'uscita dal morto
-			}
-			
+			if (contavivi==0)
+				{comando='E';}
 		}
-		while ((comando!='E') || (comando!='e'));
 		
-		System.out.println("tutti morti");
-		// ciaooo
+		System.out.println("fine");
 	}
 	
 
