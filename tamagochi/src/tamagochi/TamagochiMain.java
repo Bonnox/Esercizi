@@ -10,7 +10,7 @@ public class TamagochiMain
 	static Tamagochi vettore [];	// lo zoo
 	static int i;					// contatore
 	static String nome;				// il nome del tamagochi
-	static int contavivi;			// non farli morire!
+	//static int contavivi;			// non farli morire!
 	
 	private static void inizio_gioco()
 	{
@@ -55,6 +55,19 @@ public class TamagochiMain
 
 	}
 	
+	private static int calcola_morti()
+	{
+		int count=0;
+		
+		for (int j=0; i<quantita_tamagochi; i++)
+		{
+			if (vettore[j].get_stato()==0)
+			{count++;}
+		}
+		return count;
+	}
+	
+	
 	// PROGRAMMA PRINCIPALE
 	
 	public static void main (String[] args)
@@ -70,7 +83,7 @@ public class TamagochiMain
 		
 		// INIZIO GIOCO
 		
-		while ((comando!='E') || (comando!='e'))
+		do
 		{
 			
 			Ricevi_comando();
@@ -84,22 +97,19 @@ public class TamagochiMain
 				}
 			}
 			
-			contavivi=0;
+
 			
 			for (i=0; i<quantita_tamagochi; i++)
 			{
 				System.out.println ("ora il tamagochi " + vettore[i].come_sta_stringa() );
 				System.out.println (" ----- " + vettore[i].come_sta_stringa_debug() );
-				if (vettore[i].get_stato()>0)
-					{contavivi++;}
+				
 			}
-			System.out.println(contavivi);
-			if (contavivi==0)
-				{
-				comando='E';
-				contavivi=0;
-				}
-		}
+		
+			if (calcola_morti()==quantita_tamagochi)
+			{comando='E';}
+		} 
+		while ((comando!='E') && (comando!='e'));
 		
 		System.out.println("fine");
 	}
