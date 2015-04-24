@@ -67,6 +67,16 @@ public class TamagochiMain
 		return count;
 	}
 	
+	private static void mostra_tamagochi()
+	{
+		for (i=0; i<quantita_tamagochi; i++)
+		{
+			System.out.println ("ora il tamagochi " + vettore[i].come_sta_stringa() );
+			//System.out.println (" ----- " + vettore[i].come_sta_stringa_debug() );
+			
+		}
+	}
+	
 	
 	// PROGRAMMA PRINCIPALE
 	
@@ -80,10 +90,11 @@ public class TamagochiMain
 
 		Creazione_tamagochi();
 		
+		mostra_tamagochi();
 		
 		// INIZIO GIOCO
 		
-		do
+		do // CICLO PRINCIPALE
 		{
 			
 			Ricevi_comando();
@@ -98,17 +109,13 @@ public class TamagochiMain
 			}
 			
 
+			mostra_tamagochi();
 			
-			for (i=0; i<quantita_tamagochi; i++)
-			{
-				System.out.println ("ora il tamagochi " + vettore[i].come_sta_stringa() );
-				System.out.println (" ----- " + vettore[i].come_sta_stringa_debug() );
-				
-			}
-		
 			if (calcola_morti()==quantita_tamagochi)
 			{comando='E';}
-		} 
+			
+			
+		} // FINE CICLO GIOCO
 		while ((comando!='E') && (comando!='e'));
 		
 		System.out.println("fine");
