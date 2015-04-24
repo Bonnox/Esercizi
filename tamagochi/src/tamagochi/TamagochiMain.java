@@ -16,9 +16,14 @@ public class TamagochiMain
 	{
 		comando='a';
 		System.out.println("Gioco del tamagochi\n\n");
-		System.out.println("quanti tamagochi si vogliono creare?");
+		do
+		{
+			System.out.println("quanti tamagochi si vogliono creare?");
+			quantita_tamagochi=MyUtil.Leggi_int();
+		}
+		while (!(quantita_tamagochi>0));
 		
-		quantita_tamagochi=MyUtil.Leggi_int();
+		
 	}
 	
 	private static void Creazione_tamagochi()
@@ -40,17 +45,17 @@ public class TamagochiMain
 		{
 			System.out.println(" E - Esci\n M - Dai da mangiare\n A - Accarezza\n\n");
 			comando=MyUtil.Leggi_char();
-		System.out.println("                    " + comando);
+			if ((comando=='A') || (comando=='a') || (comando=='M') || (comando=='m'))
+			{
+				System.out.println("Quante volte? ");
+				quantita_azioni=MyUtil.Leggi_int();
+			}
 		}
 		//while ((comando!='E') || (comando!='e') || (comando!='M') || (comando!='m') || (comando!='A') || (comando!='a'));
-		
-		
-		System.out.println("Quante volte? ");
-		quantita_azioni=MyUtil.Leggi_int();
-		
+
 	}
 	
-	
+	// PROGRAMMA PRINCIPALE
 	
 	public static void main (String[] args)
 	
@@ -79,16 +84,16 @@ public class TamagochiMain
 				}
 			}
 			
-
+			contavivi=0;
 			
 			for (i=0; i<quantita_tamagochi; i++)
 			{
-				System.out.println ("ora il tamagochi " + i + " " + vettore[i].come_sta_stringa() );
+				System.out.println ("ora il tamagochi " + vettore[i].come_sta_stringa() );
 				System.out.println (" ----- " + vettore[i].come_sta_stringa_debug() );
 				if (vettore[i].get_stato()>0)
 					{contavivi++;}
 			}
-			
+			System.out.println(contavivi);
 			if (contavivi==0)
 				{
 				comando='E';
