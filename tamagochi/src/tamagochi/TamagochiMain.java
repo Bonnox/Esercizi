@@ -26,7 +26,7 @@ public class TamagochiMain
 		
 	}
 	
-	private static void Creazione_tamagochi()
+	private static void creazione_tamagochi()
 	{
 		vettore = new Tamagochi [quantita_tamagochi];
 		
@@ -39,7 +39,7 @@ public class TamagochiMain
 		}
 	}
 	
-	private static void Ricevi_comando()
+	private static void ricevi_comando()
 	{
 		//do
 		{
@@ -88,7 +88,7 @@ public class TamagochiMain
 		
 		inizio_gioco();
 
-		Creazione_tamagochi();
+		creazione_tamagochi();
 		
 		mostra_tamagochi();
 		
@@ -97,7 +97,7 @@ public class TamagochiMain
 		do // CICLO PRINCIPALE
 		{
 			
-			Ricevi_comando();
+			ricevi_comando();
 
 			
 			for (i=0; i<quantita_tamagochi; i++)
