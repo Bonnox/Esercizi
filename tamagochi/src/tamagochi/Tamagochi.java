@@ -114,22 +114,28 @@ public class Tamagochi
 					{
 						specifica_stato_infelice=1;
 					}
-					if ((affetto<AFFETTO_INFELICE) && (sazieta>SAZIETA_INFELICE_MAX))
+					else
 					{
-						specifica_stato_infelice=2;
+						if ((affetto<AFFETTO_INFELICE) && (sazieta>SAZIETA_INFELICE_MAX))
+						{
+							specifica_stato_infelice=2;
+						}
+						else
+						{
+							if (sazieta<SAZIETA_INFELICE_MIN)
+							{
+								specifica_stato_infelice=3;
+							}
+							if (affetto<AFFETTO_INFELICE)
+							{
+								specifica_stato_infelice=4;
+							}
+							if (sazieta>SAZIETA_INFELICE_MAX)
+							{
+								specifica_stato_infelice=5;
+							}
+						}
 					}
-					if (sazieta<SAZIETA_INFELICE_MIN)
-					{
-						specifica_stato_infelice=3;
-					}
-					if (affetto<AFFETTO_INFELICE)
-					{
-						specifica_stato_infelice=4;
-					}
-					if (sazieta>SAZIETA_INFELICE_MAX)
-					{
-						specifica_stato_infelice=5;
-					}	
 					return stato;
 				}
 				
@@ -145,14 +151,14 @@ public class Tamagochi
 		
 	}
 	
-	public void accudisci (int azione, int quantita)
+	public void accudisci (char azione, int quantita)
 	{
-		if (azione==0) 
+		if ((azione=='M') || (azione=='m')) 
 				{
 					dai_da_mangiare(quantita);
 				}
 		
-			else 
+		if ((azione=='A') || (azione=='a')) 
 			{
 				accarezza(quantita);
 			}
