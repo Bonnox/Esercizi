@@ -12,6 +12,7 @@ public class TamagochiMain
 	static String nome;				// il nome del tamagochi
 	//static int contavivi;			// non farli morire!
 	
+	// metodo che introduce il gioco
 	private static void inizio_gioco()
 	{
 		comando='a';
@@ -25,7 +26,8 @@ public class TamagochiMain
 		
 		
 	}
-	
+
+// crea i tamagochi 	
 	private static void creazione_tamagochi()
 	{
 		vettore = new Tamagochi [quantita_tamagochi];
@@ -39,6 +41,7 @@ public class TamagochiMain
 		}
 	}
 	
+	// si concentra nella ricezione del comando 
 	private static void ricevi_comando()
 	{
 		//do
@@ -55,6 +58,11 @@ public class TamagochiMain
 
 	}
 	
+	/**
+	 * calcola i morti
+	 * @return numero di morti, intero 
+	 * 
+	 */
 	private static int calcola_morti()
 	{
 		int count=0;
@@ -66,6 +74,7 @@ public class TamagochiMain
 		}
 		return count;
 	}
+	
 	
 	private static void mostra_tamagochi()
 	{
