@@ -13,6 +13,14 @@ public class TamagochiMain
 	//static int contavivi;			// non farli morire!
 	
 	// metodo che introduce il gioco
+	
+	/**
+	 * questo metodo introduce il gioco all'utente.
+	 * e chiede il numero di tamagochi.
+	 * 
+	 * 
+	 */
+	
 	private static void inizio_gioco()
 	{
 		comando='a';
@@ -27,7 +35,15 @@ public class TamagochiMain
 		
 	}
 
-// crea i tamagochi 	
+// crea i tamagochi 
+	
+	/**
+	 * questo metodo crea un vettore con i tamagochi specificati
+	 * 
+	 * 
+	 */
+	
+	
 	private static void creazione_tamagochi()
 	{
 		vettore = new Tamagochi [quantita_tamagochi];
@@ -40,6 +56,12 @@ public class TamagochiMain
 			vettore [i] = new Tamagochi (nome);
 		}
 	}
+	
+	
+	/**
+	 * questo metodo setta il comando.
+	 * 
+	 */
 	
 	// si concentra nella ricezione del comando 
 	private static void ricevi_comando()
@@ -75,6 +97,10 @@ public class TamagochiMain
 		return count;
 	}
 	
+	/**
+	 * questo metodo mostra lo stato di salute dei tamagochi
+	 * 
+	 */
 	
 	private static void mostra_tamagochi()
 	{
@@ -140,7 +166,7 @@ public class TamagochiMain
 		} // FINE CICLO GIOCO
 		while ((comando!='E') && (comando!='e'));
 		
-		System.out.println("fine");
+		System.out.println("fine del gioco");
 	}
 	
 
